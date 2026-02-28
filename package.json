@@ -1,0 +1,17 @@
+{
+  "name": "scratchpad",
+  "version": "1.0.0",
+  "description": "A simple backend API for managing your notes. With ScratchPad, you can quickly create, read, update, and delete notes.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app/index.js",
+    "dev": "nodemon app/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
