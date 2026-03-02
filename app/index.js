@@ -1,13 +1,14 @@
 import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
+import router from "./routes/routes.js";
 const app = express();
 dotenv.config();
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
-
+app.use("/api/v1", router);
 const startServer = async () => {
   try {
     await connectDB();
