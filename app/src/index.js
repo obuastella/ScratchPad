@@ -6,9 +6,9 @@ dotenv.config();
 const startServer = async () => {
   try {
     await connectDB();
-    app.listen(() => {
-      console.log(`Listening on Port: `, process.env.PORT);
-    });
+    app.listen(process.env.PORT, () =>
+      console.log(`Listening on Port: ${process.env.PORT}`),
+    );
   } catch (error) {
     console.log("error starting server", error);
   }
