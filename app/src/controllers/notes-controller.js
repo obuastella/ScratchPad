@@ -5,7 +5,7 @@ const getAllNotes = async (req, res) => {
   try {
     const notes = await Notes.find(); // find will always return an array
     if (!notes.length === 0) {
-      res.status(404).json({ message: "Notes not found" });
+      res.status(404).json({ message: "Notes does not exist" });
       console.log("Notes not found...");
     }
     console.log("All notes: ", notes);
