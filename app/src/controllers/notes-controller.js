@@ -56,4 +56,19 @@ const updateNote = async (req, res) => {
   }
 };
 
-export { getAllNotes, createNote, updateNote };
+const getNoteById = async (req, res) => {
+  try {
+    if (!mongoose.isValidObjectId(req.params.id)) {
+      return res.status(404).json("Invalid note id");
+    }
+    const note = await Notes.findById(req.params.id);
+    res
+      .status(200)
+      .json({ message: "Note retrieved successfully.", note: note });
+  } catch (error) {
+    console.log("An errpr occurred", error);
+    res.status(500).json({ message: "Internal Server error" });
+  }
+};
+
+export { getAllNotes, createNote, updateNote, getNoteById };
