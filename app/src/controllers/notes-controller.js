@@ -16,4 +16,22 @@ const getAllNotes = async (req, res) => {
   }
 };
 
-export default getAllNotes;
+const createNote = async (req, res) => {
+  try {
+    const { title, description } = req.body;
+    if (!title || !description) {
+      return res.status(404).json({ message: "Title and body is required..." });
+    }
+    const note = await Notes.create({
+      title,
+      description,
+    });
+    res.status(201).json({ message: "Note added successfully!", note: note });
+    return;
+  } catch (error) {
+    console.log("An error occured adding note", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+export { getAllNotes, createNote };
