@@ -71,4 +71,17 @@ const getNoteById = async (req, res) => {
   }
 };
 
-export { getAllNotes, createNote, updateNote, getNoteById };
+const deleteNoteById = async (req, res) => {
+  try {
+    if (!mongoose.isValidObjectId(req.params.id)) {
+      return res.status(404).json({ message: "Invalid id" });
+    }
+    const note = await Notes.findByIdAndDelete(req.params.id);
+    res.status(200).json({ message: "Note deleted", note: note });
+  } catch (error) {
+    console.log("An error occurred deleting note: ", error);
+    res.status(500).json({ message: "Internal Server error" });
+  }
+};
+
+export { getAllNotes, createNote, updateNote, getNoteById, deleteNoteById };
