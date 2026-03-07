@@ -62,6 +62,10 @@ const getNoteById = async (req, res) => {
       return res.status(404).json("Invalid note id");
     }
     const note = await Notes.findById(req.params.id);
+    if (!note)
+      return res
+        .status(404)
+        .json({ message: "Note with this id does not exist" });
     res
       .status(200)
       .json({ message: "Note retrieved successfully.", note: note });
@@ -77,6 +81,10 @@ const deleteNoteById = async (req, res) => {
       return res.status(404).json({ message: "Invalid id" });
     }
     const note = await Notes.findByIdAndDelete(req.params.id);
+    if (!note)
+      return res
+        .status(404)
+        .json({ message: "Note with this id does not exist" });
     res.status(200).json({ message: "Note deleted", note: note });
   } catch (error) {
     console.log("An error occurred deleting note: ", error);
