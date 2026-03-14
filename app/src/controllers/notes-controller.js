@@ -78,7 +78,7 @@ const getNoteById = async (req, res) => {
 const deleteNoteById = async (req, res) => {
   try {
     if (!mongoose.isValidObjectId(req.params.id)) {
-      return res.status(404).json({ message: "Invalid id" });
+      return res.status(404).json({ message: "Invalid Id" });
     }
     const note = await Notes.findByIdAndDelete(req.params.id);
     if (!note)
